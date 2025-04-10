@@ -19,16 +19,16 @@ public class AccountService {
     	  return repo.findAll();
       }
       
-      public Account getById(Long id) {
-    	  return repo.findById(id).orElse(null);
+      public Account getByAccNum(Long accNum) {
+    	  return repo.findById(accNum).orElse(null);
       }
       
       public Account save(Account acc) {
     	 return  repo.save(acc);
       }
       
-      public void delete(Long id) {
-    	  repo.deleteById(id);
+      public void delete(Long accNum) {
+    	  repo.deleteById(accNum);
       }
       
       public void deleteAccount(Account acc) {

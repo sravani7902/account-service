@@ -1,9 +1,7 @@
 package com.acc.accountservice.account_service.model;
 
-import jakarta.persistence.Column;
+
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.*;
 
@@ -13,12 +11,16 @@ import lombok.*;
 @AllArgsConstructor
 
 public class Account {
-	public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
-	}
+	
+
+	@Id
+	private Long accNum;
+	private String name;
+	private String accType;
+	private Double balance;
+	private String status;
+	
+
 	public String getName() {
 		return name;
 	}
@@ -43,21 +45,11 @@ public class Account {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	public Long getAccnum() {
-		return accnum;
+	public Long getAccNum() {
+		return accNum;
 	}
-	public void setAccnum(Long accnum) {
-		this.accnum = accnum;
+	public void setAccNum(Long accNum) {
+		this.accNum = accNum;
 	}
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	@Column(unique = true, nullable = false)
-	private Long accnum;
-	private String name;
-	private String accType;
-	private Double balance;
-	private String status;
 	
-
 }

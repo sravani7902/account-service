@@ -2,6 +2,7 @@ package com.acc.accountservice.account_service.controller;
 
 import java.util.List;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.acc.accountservice.account_service.model.Account;
@@ -17,29 +18,32 @@ public class AccountController {
      }
      
      @GetMapping
-     public List<Account> getAll(){
-    	 return service.getAll();
+     public ResponseEntity<List<Account>> getAll(){
+    	 return ResponseEntity.ok(service.getAll());
      }
      
-     @GetMapping("/{id}")
-     public Account get(@PathVariable Long id) {
-    	 return service.getById(id);
+     @GetMapping("/{accNum}")
+     public ResponseEntity<Account> get(@PathVariable Long accNum) {
+    	 Account acc = service.getByAccNum(accNum);
+    	 return acc != null ? ResponseEntity.ok(acc) : ResponseEntity.notFound().build();
      }
      
      @PostMapping
-     public Account create(@RequestBody Account acc) {
-    	 return service.save(acc);
+     public ResponseEntity<Account> create(@RequestBody Account acc) {
+    	 Account saved = service.save(acc);
+    	 return ResponseEntity.ok(saved);
      }
      
-     @PutMapping("/{id}")
-     public Account update(@PathVariable Long id, @RequestBody Account acc) {
-    	 acc.setId(id);
-    	 return service.save(acc);
+     @PutMapping("/{accNum}")
+     public ResponseEntity<Account> update(@PathVariable Long accNum, @RequestBody Account acc) {
+         acc.setAccNum(accNum);
+         Account updated = service.save(acc);
+         return ResponseEntity.ok(updated);
      }
      
-     @DeleteMapping("/{id}")
-     public void delete(@PathVariable Long id) {
-         service.delete(id);
-     }
-     
+     @DeleteMapping("/{accNum}")
+     public ResponseEntity<Void> delete(@PathVariable Long accNum) {
+         service.delete(accNum);
+         return ResponseEntity.noContent().build();
+     }     
 }
