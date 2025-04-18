@@ -21,6 +21,14 @@ public class Account {
 	private String status;
 	
 
+	public Account(Long accNum, String name, String accType, double balance, String status) {
+	    this.accNum = accNum;
+	    this.name = name;
+	    this.accType = accType;
+	    this.balance = balance;
+	    this.status = status;
+	}
+
 	public String getName() {
 		return name;
 	}
