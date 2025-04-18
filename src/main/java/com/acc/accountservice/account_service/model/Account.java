@@ -20,6 +20,9 @@ public class Account {
 	private Double balance;
 	private String status;
 	
+	public Account() {
+		
+	}
 
 	public Account(Long accNum, String name, String accType, double balance, String status) {
 	    this.accNum = accNum;
